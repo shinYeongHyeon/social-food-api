@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  api:
+    container_name: social-food-api
+    build:
+      context: ""
+      dockerfile: Dockerfile
+    ports:
+      - "9999:9999"
+    volumes:
+      - ./:/app/
+    environment:
+      - POSTGRES_DB=social-food-api
+      - POSTGRES_USER=sfaroot
+      - POSTGRES_PASSWORD=sfarootpwd
+      - POSTGRES_HOST=sfa-postgres
+      - POSTGRES_PORT=5432

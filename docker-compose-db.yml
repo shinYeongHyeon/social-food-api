@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  postgres:
+    container_name: sfa--postgres
+    image: postgres:15.2
+    volumes:
+      - ./docker/data/postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=social-food-api
+      - POSTGRES_USER=sfaroot
+      - POSTGRES_PASSWORD=sfarootpwd
+      - TZ=Asia/Seoul
+    ports:
+      - "5432:5432"
