@@ -2,7 +2,7 @@ package main_module
 
 import (
 	"github.com/gin-gonic/gin"
-	"social-food-api/src/food-card"
+	"social-food-api/src/food_card"
 	"social-food-api/src/health"
 )
 

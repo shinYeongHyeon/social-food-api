@@ -27,3 +27,8 @@ $ sudo gem install colorize
 $ sudo gem install win32console  # For Windows only
 ```
 If not, delete colorized sentence/word in `git-hooks`
+
+## Testing
+```shell
+$ go test ./...
+```

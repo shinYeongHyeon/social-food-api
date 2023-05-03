@@ -1,13 +1,16 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
+	"google.golang.org/protobuf/types/known/timestamppb"
 	"log"
 	"net/http"
 	"social-food-api/src"
 )
 
 func main() {
+	fmt.Print("now", timestamppb.Now().Seconds)
 	r := gin.New()
 
 	// Global middleware
