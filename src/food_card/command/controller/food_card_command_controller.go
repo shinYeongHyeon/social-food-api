@@ -6,6 +6,7 @@ import (
 	"social-food-api/src/food_card/command/application/create_food_card_use_case"
 	"social-food-api/src/food_card/command/application/create_food_card_use_case/dto"
 	"social-food-api/src/food_card/command/controller/dto"
+	food_card_repository "social-food-api/src/food_card/repository"
 	"social-food-api/src/shared/domain"
 )
 
@@ -33,12 +34,15 @@ func CreateFoodCard(c *gin.Context) {
 	var latitude, _ = shared_domain.CreateLatitudeLongitude(request.Latitude)
 	var longitude, _ = shared_domain.CreateLatitudeLongitude(request.Longitude)
 
-	var createFoodCardResponse = create_food_card_use_case.Execute(create_food_card_use_case_dto.CreateFoodCardUseCaseRequest{
-		Name:      name,
-		Address:   address,
-		Latitude:  latitude,
-		Longitude: longitude,
-	})
+	var createFoodCardResponse = create_food_card_use_case.Execute(
+		food_card_repository.GetRepository(),
+		create_food_card_use_case_dto.CreateFoodCardUseCaseRequest{
+			Name:      name,
+			Address:   address,
+			Latitude:  latitude,
+			Longitude: longitude,
+		},
+	)
 
 	if !createFoodCardResponse.IsSuccess || createFoodCardResponse.Code != "SUCCESS" {
 		c.IndentedJSON(http.StatusInternalServerError, gin.H{
