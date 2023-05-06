@@ -6,7 +6,7 @@ import (
 	"gorm.io/gorm"
 	"log"
 	"os"
-	shared_infra_entities "social-food-api/src/shared/infra/entities"
+	"social-food-api/src/shared/infra/entities"
 )
 
 type PostgresManager struct {
@@ -38,6 +38,7 @@ func init() {
 	Manager = &PostgresManager{Db: db}
 
 	fatalErrorWhenAutoMigrating(Manager.Db.Table(shared_infra_entities.FoodCardEntityTableName).AutoMigrate(&shared_infra_entities.FoodCardEntity{}))
+	fatalErrorWhenAutoMigrating(Manager.Db.Table(shared_infra_entities.UserEntityTableName).AutoMigrate(&shared_infra_entities.UserEntity{}))
 }
 
 // GetManager : Get PostgresManager
