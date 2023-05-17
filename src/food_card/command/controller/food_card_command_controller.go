@@ -29,7 +29,12 @@ func CreateFoodCard(c *gin.Context) {
 	var latitude, latitudeError = shared_domain.CreateLatitudeLongitude(request.Latitude)
 	var longitude, longitudeError = shared_domain.CreateLatitudeLongitude(request.Longitude)
 
-	shared_core.ThrowErrorWhenCreatingValueObject(c, []error{nameError, addressError, latitudeError, longitudeError})
+	hasError, voErr := shared_core.ValidateValueObjectErrors([]error{nameError, addressError, latitudeError, longitudeError})
+
+	if hasError {
+		c.IndentedJSON(shared_core.ThrowErrorWhenCreatingValueObject(voErr))
+		return
+	}
 
 	var createFoodCardResponse = create_food_card_use_case.Execute(
 		food_card_repository.GetRepository(),

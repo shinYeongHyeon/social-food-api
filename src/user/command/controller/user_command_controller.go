@@ -45,7 +45,12 @@ func CreateUser(c *gin.Context) {
 	userId, userIdError := user_domain.CreateUserId(request.Id)
 	loginMethod, loginMethodError := shared_enums.FromString(request.LoginMethod)
 
-	shared_core.ThrowErrorWhenCreatingValueObject(c, []error{userNameError, userIdError, loginMethodError})
+	hasError, voErr := shared_core.ValidateValueObjectErrors([]error{userNameError, userIdError, loginMethodError})
+
+	if hasError {
+		c.IndentedJSON(shared_core.ThrowErrorWhenCreatingValueObject(voErr))
+		return
+	}
 
 	var createUserResponse = create_user_use_case.Execute(
 		user_repository.GetRepository(),
