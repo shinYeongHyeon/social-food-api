@@ -39,6 +39,7 @@ func init() {
 
 	fatalErrorWhenAutoMigrating(Manager.Db.Table(shared_infra_entities.FoodCardEntityTableName).AutoMigrate(&shared_infra_entities.FoodCardEntity{}))
 	fatalErrorWhenAutoMigrating(Manager.Db.Table(shared_infra_entities.UserEntityTableName).AutoMigrate(&shared_infra_entities.UserEntity{}))
+	fatalErrorWhenAutoMigrating(Manager.Db.Table(shared_infra_entities.GroupEntityTableName).AutoMigrate(&shared_infra_entities.GroupEntity{}))
 }
 
 // GetManager : Get PostgresManager
