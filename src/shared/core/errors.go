@@ -6,6 +6,13 @@ import (
 	"net/http"
 )
 
+func ThrowUnauthorized() (int, any) {
+	return http.StatusUnauthorized, gin.H{
+		"code":    "UNAUTHORIZED",
+		"message": "this api need authorization",
+	}
+}
+
 func ThrowErrorWhenRequestBodyEmpty() (int, any) {
 	return http.StatusBadRequest, gin.H{
 		"code":    "BAD_REQUEST",

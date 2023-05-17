@@ -7,4 +7,6 @@ import (
 
 func SetupUserModule(r *gin.RouterGroup) {
 	r.POST("/", user_command_controller.CreateUser)
+	// TODO : 분리하기
+	r.POST("/groups", user_command_controller.CreateGroup)
 }

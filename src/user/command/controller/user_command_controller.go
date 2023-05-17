@@ -1,17 +1,32 @@
 package user_command_controller
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"social-food-api/src/shared/core"
 	"social-food-api/src/shared/domain"
-	shared_enums "social-food-api/src/shared/enums"
+	"social-food-api/src/shared/enums"
 	"social-food-api/src/user/command/application/create_user_use_case"
-	create_user_use_case_dto "social-food-api/src/user/command/application/create_user_use_case/dto"
+	"social-food-api/src/user/command/application/create_user_use_case/dto"
 	"social-food-api/src/user/command/controller/dto"
 	"social-food-api/src/user/domain"
-	user_repository "social-food-api/src/user/repository"
+	"social-food-api/src/user/repository"
 )
+
+func CreateGroup(c *gin.Context) {
+	trueOrFalse, isExist := c.Get("isAuthorized")
+	value, isExist2 := c.Get("authorized")
+
+	c.IndentedJSON(http.StatusCreated, gin.H{
+		"code": "SUCCESS",
+		"id":   "뮻",
+	})
+	fmt.Println(trueOrFalse)
+	fmt.Println(isExist)
+	fmt.Println(value)
+	fmt.Println(isExist2)
+}
 
 func CreateUser(c *gin.Context) {
 	var request user_command_controller_dto.CreateUserRequest
