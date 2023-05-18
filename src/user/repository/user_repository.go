@@ -25,8 +25,8 @@ func GetRepository() *UserRepository {
 	return userRepository
 }
 
-func (userRepository *UserRepository) Create(user user_domain.User) error {
-	userRepository.Repository.Create(&shared_infra_entities.UserEntity{
+func (r *UserRepository) Create(user user_domain.User) error {
+	r.Repository.Create(&shared_infra_entities.UserEntity{
 		UUID:      user.GetUuid(),
 		Id:        user.GetUserId().Value(),
 		Name:      user.GetName().Value(),

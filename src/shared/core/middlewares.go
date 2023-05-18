@@ -14,13 +14,13 @@ func GetUser() gin.HandlerFunc {
 		}
 
 		if authorization[0] == "" {
-			c.Set("isAuthorized", false)
+			c.Set(IsAuthorized, false)
 			c.Next()
 			return
 		}
 
-		c.Set("isAuthorized", true)
-		c.Set("authorized", authorization[0])
+		c.Set(IsAuthorized, true)
+		c.Set(Authorized, authorization[0])
 		c.Next()
 	}
 }

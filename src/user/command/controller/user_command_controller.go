@@ -1,7 +1,6 @@
 package user_command_controller
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"social-food-api/src/shared/core"
@@ -13,20 +12,6 @@ import (
 	"social-food-api/src/user/domain"
 	"social-food-api/src/user/repository"
 )
-
-func CreateGroup(c *gin.Context) {
-	trueOrFalse, isExist := c.Get("isAuthorized")
-	value, isExist2 := c.Get("authorized")
-
-	c.IndentedJSON(http.StatusCreated, gin.H{
-		"code": "SUCCESS",
-		"id":   "뮻",
-	})
-	fmt.Println(trueOrFalse)
-	fmt.Println(isExist)
-	fmt.Println(value)
-	fmt.Println(isExist2)
-}
 
 func CreateUser(c *gin.Context) {
 	var request user_command_controller_dto.CreateUserRequest
@@ -66,6 +51,7 @@ func CreateUser(c *gin.Context) {
 			"code":    "INTERNAL_SERVER_ERROR",
 			"message": "some error when create user",
 		})
+		return
 	}
 
 	c.IndentedJSON(http.StatusCreated, gin.H{
