@@ -1,10 +1,10 @@
-package user_domain
+package group_domain_test
 
 import (
 	"github.com/go-faker/faker/v4"
 	"google.golang.org/protobuf/types/known/timestamppb"
+	"social-food-api/src/group/group_domain"
 	"social-food-api/src/shared/domain"
-	"social-food-api/src/user/domain"
 	"testing"
 )
 
@@ -14,7 +14,7 @@ func TestCreateGroupSuccess(t *testing.T) {
 
 	var name, _ = shared_domain.CreateName(userName)
 
-	group, err := user_domain.CreateNewGroup(user_domain.NewGroupProps{
+	group, err := group_domain.CreateNewGroup(group_domain.NewGroupProps{
 		OwnerUuid: ownerUuid,
 		Name:      name,
 	})

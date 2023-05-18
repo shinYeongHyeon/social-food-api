@@ -1,4 +1,4 @@
-package user_domain
+package group_domain
 
 import (
 	"google.golang.org/protobuf/types/known/timestamppb"
